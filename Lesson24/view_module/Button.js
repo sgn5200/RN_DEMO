@@ -8,7 +8,7 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     View
 } from 'react-native';
 
@@ -25,12 +25,12 @@ export default class Button extends Component{
 
     render(){
         return(
-            <TouchableWithoutFeedback onPress={this._handlePress.bind(this)}>
+            <TouchableOpacity onPress={this._handlePress.bind(this)}>
                 <View style={[styles.button,styles.center,this.props.enabled?{}:styles.buttonDisable]}>
                     <Text style={styles.buttonText}>{this.props.text}</Text>                
                 </View>
             
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
             
         );
     }    
@@ -40,15 +40,15 @@ const styles = StyleSheet.create({
         button: {
             width: 0,
             margin:5,
-            borderColor:'gray',
-            backgroundColor:'gray',
-            height:100,
-            borderRadius:5,
+            borderColor:'green',
+            backgroundColor:0xabcabc,
+            borderRadius:10,
             padding:10
         },
 
         buttonDisable: {
             backgroundColor: 'black',
+            borderRadius:10,
             opacity: 0.5
         },
 
