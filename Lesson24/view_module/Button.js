@@ -17,7 +17,7 @@ export default class Button extends Component{
         super(props);
     }
     
-    _handlePress=()=>{
+    _handlePress(){
         if(this.props.enabled && this.props.onPress){
             this.props.onPress();
         }
@@ -25,7 +25,7 @@ export default class Button extends Component{
 
     render(){
         return(
-            <TouchableWithoutFeedback onPress={this._handlePress}>
+            <TouchableWithoutFeedback onPress={this._handlePress.bind(this)}>
                 <View style={[styles.button,styles.center,this.props.enabled?{}:styles.buttonDisable]}>
                     <Text style={styles.buttonText}>{this.props.text}</Text>                
                 </View>

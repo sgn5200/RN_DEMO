@@ -11,12 +11,12 @@ import {
   View
 } from 'react-native';
 
-import IndexView from './IndexView';
+import MainPage from './MainPage';
 
 class Lesson24 extends Component {
   render() {
     return (
-      <IndexView/>
+      <MainPage/>
     );
   }
 }

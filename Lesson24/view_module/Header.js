@@ -22,13 +22,11 @@ export default class Header extends Component{
             
             <View>
             
-            <TouchableOpacity onPress={this.props.onPress}>
                 <View style={styles.header}>
                 
                     <Text style={styles.font}>{this.props.text}</Text>
                 
                 </View>
-            </TouchableOpacity>
             
             </View>
         );
