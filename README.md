@@ -2,15 +2,15 @@
 
 
 echo "# guangneng-RN-Lesson24" >> README.md
-git init
+##1，git init
 git add README.md
-git commit -m "first commit"
+##2,git commit -m "first commit"
 git remote add origin git@github.com:sgn5200/guangneng-RN-Lesson24.git
 git push -u origin master
 …or push an existing repository from the command line
 
 git remote add origin git@github.com:sgn5200/guangneng-RN-Lesson24.git
-git push -u origin master
+##3,git push -u origin master
 …or import code from another repository
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
