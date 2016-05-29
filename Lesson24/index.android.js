@@ -11,7 +11,7 @@ import {
   View
 } from 'react-native';
 
-import MainPage from './MainPage';
+import MainPage from './page/MainPage';
 
 class Lesson24 extends Component {
   render() {
