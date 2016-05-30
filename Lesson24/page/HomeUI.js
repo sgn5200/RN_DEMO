@@ -20,6 +20,8 @@ var navigator;
 import WelcomeSwiper from './WelcomeSwiper';
 import IndexView from './IndexView';
 import Button from '../view_module/Button';
+import Toast from 'react-native-root-toast';
+
 
 export default class HomeUI extends Component {
 
@@ -28,16 +30,32 @@ export default class HomeUI extends Component {
         this.state = {
             movies: null,
         }
-        navigator=this.props.navigator;
+        navigator = this.props.navigator;
     }
 
     goBack() {
-        if (navigator) {
-            navigator.push({
-                name:"WelcomeSwiper",
-                component:WelcomeSwiper,
-            })
-        }
+
+
+        // 通过调用 Toast.show(message, options); 可以在屏幕上显示一个toast，并返回一个toast实例
+        Toast.show('My Toast', {
+            duration: 2000, // toast显示时长
+            position: Toast.positions.CENTER, // toast位置
+            shadow: false, // toast是否出现阴影
+            animation: true, // toast显示/隐藏的时候是否需要使用动画过渡
+        });
+
+        // 也可以通过调用Toast.hide(toast); 手动隐藏toast实例
+        // setTimeout(function () {
+        //     Toast.hide(toast);
+        // }, 5000);
+
+
+        // if (navigator) {
+        //     navigator.push({
+        //         name:"WelcomeSwiper",
+        //         component:WelcomeSwiper,
+        //     })
+        // }
 
     }
 
@@ -45,57 +63,57 @@ export default class HomeUI extends Component {
         if (!this.state.movies) {
             return this.renderLoadingView();
         }
-        var movie=this.state.movies[0];
+        var movie = this.state.movies[0];
         return this.renderMovie(movie);
     }
-    
-    renderLoadingView(){
-        return(
+
+    renderLoadingView() {
+        return (
             <View style= {styles.container} >
-                <Text>正在请求数据</Text>           
+                <Text>正在请求数据</Text>
             </View>
         )
     }
-    
+
     //渲染一个item
-    
-    renderMovie(movie){
-        return(
-          <View style={styles.container}>
+
+    renderMovie(movie) {
+        return (
+            <View style={styles.container}>
                 <Image
-                    source={{uri:movie.posters.thumbnail}}
+                    source={{ uri: movie.posters.thumbnail }}
                     style={styles.thumbnail}/>
-                    
+
                 <View style= {styles.rightContainer}>
                     <Text style={styles.title}>标题：{movie.title}</Text>
                     <Text style={styles.year}>{movie.year} 年</Text>
-                    
-                
-                </View>    
-                
+
+
+                </View>
+
                 <Button
                     text='看狗'
-                    onPress={this.goBack.bind(this)}
+                    onPress={this.goBack.bind(this) }
                     enabled={true}
-                />
-          
-          </View>  
-            
+                    />
+
+            </View>
+
         );
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
         this.fetchData();
     }
-    
-    fetchData(){
-        fetch(REQUEST_URL).then((response)=>response.json())
-        .then((responseData)=>{
-            this.setState({movies:responseData.movies});
-            
-        }).done();
+
+    fetchData() {
+        fetch(REQUEST_URL).then((response) => response.json())
+            .then((responseData) => {
+                this.setState({ movies: responseData.movies });
+
+            }).done();
     }
-    
+
 }
 
 
@@ -103,7 +121,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        flexDirection:'row',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f5fcff',
@@ -120,26 +138,26 @@ const styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
-    
-    thumbnail:{
-        width:53,
-        height:81,
+
+    thumbnail: {
+        width: 53,
+        height: 81,
     },
-    
-    rightContainer:{
-        flex:1
+
+    rightContainer: {
+        flex: 1
     },
-    
-    title:{
-        fontSize:20,
-        padding:10,
-        textAlign:'center'
+
+    title: {
+        fontSize: 20,
+        padding: 10,
+        textAlign: 'center'
     },
-    
-    year:{
-        textAlign:'center'
+
+    year: {
+        textAlign: 'center'
     }
-    
-    
-    
+
+
+
 });

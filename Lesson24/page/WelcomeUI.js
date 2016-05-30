@@ -42,7 +42,7 @@ export default class WelcomeUI extends Component {
     //用构造函数来替代之前的 Initial实例化
     constructor(props) {
         super(props);
-        navigator=this.props.navigator;
+        navigator = this.props.navigator;
         this.state = {
             page: 0,
             animationsAreEnabled: true,//动画是否开启
@@ -52,21 +52,21 @@ export default class WelcomeUI extends Component {
             }
         };
     }
-    
-    ComponentWillMount(){
+
+    ComponentWillMount() {
         console.log("component will mount");
     }
 
     // onPageSelected = (e) => {
     //     this.setState({ page: e.nativeEvent.position });
     // }
-    
-    
-  onPageSelected=(e)=>{
-    //这个回调会在页面切换完成后（当用户在页面间滑动）调用
-    //回调参数中的event.nativeEvent对象
-    this.setState({page:e.nativeEvent.position});
-  }
+
+
+    onPageSelected = (e) => {
+        //这个回调会在页面切换完成后（当用户在页面间滑动）调用
+        //回调参数中的event.nativeEvent对象
+        this.setState({ page: e.nativeEvent.position });
+    }
 
 
     onPageScroll = (e) => {
@@ -106,9 +106,9 @@ export default class WelcomeUI extends Component {
             })
         }
     }
-    
-    setAnimation(){
-        this.setState({animationsAreEnabled:!this.state.animationsAreEnabled});    
+
+    setAnimation() {
+        this.setState({ animationsAreEnabled: !this.state.animationsAreEnabled });
     }
 
     render() {
@@ -152,8 +152,8 @@ export default class WelcomeUI extends Component {
 
         return (
             <View style={styles.container}>
-            
-            <Header text='Guangneng Demo Lesson24'/>
+
+                <Header text='Guangneng Demo Lesson24'/>
                 <ViewPagerAndroid
                     style={styles.viewPager}
                     initialPage={0}
@@ -169,24 +169,24 @@ export default class WelcomeUI extends Component {
                             <Button
                                 text='turn off animations'
                                 enabled={true}
-                                onPress={this.setAnimation.bind(this)}/>
+                                onPress={this.setAnimation.bind(this) }/>
                             :
                             <Button
                                 text='turn animations back on'
                                 enabled={true}
-                                onPress={this.setAnimation.bind(this)}/>
+                                onPress={this.setAnimation.bind(this) }/>
                     }
                 </View>
 
                 <View style={styles.buttons}>
                     <Button text='start' enabled={page > 0} onPress={() => this.go(0) }/>
-                    <Button text='prev' enabled={page > 0} onPress={() => this.move(-1)}/>
+                    <Button text='prev' enabled={page > 0} onPress={() => this.move(-1) }/>
 
                     <Text style={styles.buttonText}> 页：{page + 1} / {PAGES}</Text>
                     <ProgressBar size={50} progress={this.state.progress}/>
 
-                    <Button text='text' enabled={page < PAGES - 1} onPress={() => this.move(1)}/>
-                    <Button text='last' enabled={page < PAGES - 1} onPress={() => this.go(PAGES - 1)}/>
+                    <Button text='text' enabled={page < PAGES - 1} onPress={() => this.move(1) }/>
+                    <Button text='last' enabled={page < PAGES - 1} onPress={() => this.go(PAGES - 1) }/>
                 </View>
             </View>
         );
@@ -224,17 +224,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin:1
+        margin: 1
     },
 
     image: {
-        marginTop:50,
+        marginTop: 50,
         width: 350,
         height: 200,
         padding: 2,
-        borderWidth:2,
-        borderColor:'#4f4f4f',
-        borderRadius:10
+        borderWidth: 2,
+        borderColor: '#4f4f4f',
+        borderRadius: 10
     },
 
     startipButton: {

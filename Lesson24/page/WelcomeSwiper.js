@@ -35,13 +35,13 @@ export default class WelcomeSwiper extends Component {
     render() {
         return (
             <Swiper style={styles.wrapper} showsButtons={true}>
-                <Image style={[{ flex: 1 }]} source={{ uri: IMAGES[0] }}/>
+                <Image style={styles.flex} source={{ uri: IMAGES[0] }}/>
 
                 <Image
-                    style={{ flex: 1 }}
+                    style={styles.flex}
                     source={{ uri: IMAGES[1] }}/>
 
-                <Image style={{flex:1}} source={{ uri: IMAGES[2] }}/>
+                <Image style={styles.flex} source={{ uri: IMAGES[2] }}/>
             </Swiper>
         );
     }
@@ -76,5 +76,8 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1
+    },
+    flex:{
+        flex:1
     }
 });
