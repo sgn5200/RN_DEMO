@@ -17,4 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Welcome" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@mipmap/first_backpng</item>
+    </style>
+
 </resources>

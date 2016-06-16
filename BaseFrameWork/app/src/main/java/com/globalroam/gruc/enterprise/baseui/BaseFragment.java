@@ -19,15 +19,14 @@ import com.globalroam.gruc.enterprise.utils.Log;
 public abstract class BaseFragment extends Fragment implements IDelegate{
 
     protected String TAG;
-    protected String tag;
     protected SparseArray<View> mViews = new SparseArray<>();
     protected View rootView = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,TAG+"~~~onCreate");
-        tag=getTag();
+        TAG=this.getClass().getSimpleName();
+        Log.i("onCreate");
     }
 
     @Nullable
@@ -35,41 +34,41 @@ public abstract class BaseFragment extends Fragment implements IDelegate{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         create(inflater,container,savedInstanceState);
         initView();
-        Log.i(TAG,TAG+"~~~onCreateView");
+        Log.i("onCreateView");
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(TAG,TAG+"~~~onViewCreated");
+        Log.i("onViewCreated");
 
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.i(TAG,TAG+"~~~onAttach");
+        Log.i("onAttach");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.i(TAG,TAG+"~~~onPause");
+        Log.i("onPause");
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG,TAG+"~~~onResume");
+        Log.i("onResume");
 
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG,TAG+"~~~onDestroy");
+        Log.i("onDestroy");
 
     }
 

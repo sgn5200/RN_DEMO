@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -17,14 +17,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        //image loader
+        compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
+        //google flexbox
+        compile 'com.google.android:flexbox:0.2.1'
+        //google support
+        compile 'com.android.support:appcompat-v7:23.3.0'
+        compile 'com.android.support:design:23.3.0'
+        compile 'com.google.code.gson:gson:2.6.2'
+//        //rx
+//        compile 'io.reactivex:rxandroid:1.2.0'
+//        compile 'io.reactivex:rxjava:1.1.5'
+//
+//        //retrofit2
+//        compile 'com.squareup.retrofit2:retrofit:2.1.0'
+//        compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+//        compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+
+        compile 'io.reactivex:rxandroid:1.0.1'
+        compile 'io.reactivex:rxjava:1.0.14'
+        compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+        compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+        compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+
+
+//        compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    }
 }
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
-    //image loader
-    //google flexbox
-    compile 'com.google.android:flexbox:0.2.1'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
-}

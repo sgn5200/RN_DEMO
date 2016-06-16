@@ -1,28 +1,21 @@
 package com.globalroam.gruc.enterprise.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.globalroam.gruc.enterprise.R;
 import com.globalroam.gruc.enterprise.baseui.BaseActivity;
 
-public class WelcomeActivity extends BaseActivity {
-
-    @Override
-    public int getRootLayoutId() {
-        return R.layout.activity_welcome;
-    }
-
+public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                lunchActivity(LoginActivity.class);
-            }
-        },1000);
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+        }, 1000);
     }
 
     @Override
@@ -30,8 +23,4 @@ public class WelcomeActivity extends BaseActivity {
         super.onResume();
     }
 
-    @Override
-    public void initView() {
-
-    }
 }

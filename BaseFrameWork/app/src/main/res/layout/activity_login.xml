@@ -4,32 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bt0"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="bt0"
-        android:layout_gravity="bottom|end"
+        <Button
+            android:id="@+id/bt0"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:text="bt0"
 
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/bt1"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="bt1"
-        android:textAllCaps="false" />
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/bt2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="bt2"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/bt1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="bt1"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/bt3"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="bt3"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/bt2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="bt2"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/bt3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="bt3"
+            android:textAllCaps="false" />
+
 </LinearLayout>

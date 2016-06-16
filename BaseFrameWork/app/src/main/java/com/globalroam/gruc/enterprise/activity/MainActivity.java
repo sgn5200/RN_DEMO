@@ -1,10 +1,15 @@
 package com.globalroam.gruc.enterprise.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 
 import com.globalroam.gruc.enterprise.R;
 import com.globalroam.gruc.enterprise.baseui.BaseActivity;
@@ -17,12 +22,12 @@ import com.globalroam.gruc.enterprise.utils.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    View tabs[];
+    ImageView tabs[];
     ViewPager viewPager;
     List<Fragment> fragments;
-
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_main;
@@ -30,12 +35,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void initView() {
-        tabs = new View[]{
+        tabs = new ImageView[]{
                 bind(R.id.tab1),
                 bind(R.id.tab2),
                 bind(R.id.tab3),
@@ -106,4 +112,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
 }

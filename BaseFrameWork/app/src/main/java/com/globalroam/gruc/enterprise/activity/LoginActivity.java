@@ -8,11 +8,18 @@ import com.globalroam.gruc.enterprise.R;
 import com.globalroam.gruc.enterprise.activity.presenter.login.LoginPresenter;
 import com.globalroam.gruc.enterprise.activity.presenter.login.LoginFab;
 import com.globalroam.gruc.enterprise.baseui.BaseActivity;
+import com.globalroam.gruc.enterprise.http.entity.Girl;
+import com.globalroam.gruc.enterprise.http.entity.GirlData;
+import com.globalroam.gruc.enterprise.utils.Log;
+
+import rx.Subscriber;
 
 public class LoginActivity extends BaseActivity implements LoginFab, View.OnClickListener {
 
-    Button bt0, bt1, bt2, bt3;
+    private Button bt0, bt1, bt2, bt3;
+    private Subscriber<GirlData> sub;
     LoginPresenter loginControl;
+    int page=1;
 
     @Override
     public int getRootLayoutId() {
@@ -32,7 +39,32 @@ public class LoginActivity extends BaseActivity implements LoginFab, View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initListener(this, bt0, bt1, bt2, bt3);
+
+        sub=new Subscriber<GirlData>() {
+            @Override
+            public void onCompleted() {
+                Log.i(TAG);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG," onError "+e.toString());
+
+            }
+
+            @Override
+            public void onNext(GirlData girlData) {
+                Log.i(TAG,girlData.isError()+"");
+
+                for(Girl girl:girlData.getGirls()){
+                    Log.i(TAG,girl.toString());
+                }
+            }
+        };
+
+        loginControl = new LoginPresenter(this);
     }
+
 
     @Override
     public void loginSuccess() {
@@ -58,15 +90,13 @@ public class LoginActivity extends BaseActivity implements LoginFab, View.OnClic
                 showToast("click bt0");
                 break;
             case R.id.bt1:
-                showToast("click bt1");
                 break;
             case R.id.bt2:
-                showToast("click bt2");
+                page++;
+                loginControl.testApi(page);
                 break;
             case R.id.bt3:
                 showToast("click bt3");
-
-                loginControl=new LoginPresenter(this);
                 loginControl.login("username","password");
                 break;
         }

@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.globalroam.gruc.enterprise.MyApplication;
+import com.globalroam.gruc.enterprise.App;
 import com.globalroam.gruc.enterprise.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -224,7 +224,7 @@ public class DrawableUtils {
      */
     public static Bitmap toRoundCorner(Bitmap bitmap) {
         // TODO: 2015/9/16  全局配置图片圆角
-        float roundPx = ScreenUtils.dp2px(MyApplication.getInstance().getApplicationContext(),5);
+        float roundPx = ScreenUtils.dp2px(App.getInstance().getApplicationContext(),5);
         if (null == bitmap || bitmap.isRecycled()) {
             return null;
         }
