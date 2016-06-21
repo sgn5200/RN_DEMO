@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.globalroam.gruc.enterprise.fragment.FragmentTab2">
+    tools:context=".mvp.FragmentTab2">
 
     <include layout="@layout/common_bar" />
 

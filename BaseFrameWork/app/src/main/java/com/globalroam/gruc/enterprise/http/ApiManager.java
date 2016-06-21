@@ -1,13 +1,22 @@
 package com.globalroam.gruc.enterprise.http;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.globalroam.gruc.enterprise.BuildConfig;
 import com.globalroam.gruc.enterprise.http.entity.GirlData;
-import com.squareup.okhttp.OkHttpClient;
+import com.globalroam.gruc.enterprise.utils.ACache;
+import com.globalroam.gruc.enterprise.utils.Log;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import javax.net.ssl.SSLSocketFactory;
+
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 /**
@@ -20,30 +29,46 @@ public class ApiManager implements ApiRepository {
 
     private static final String BASE_URL = "http://gank.io/api/";
 
-    private final int DEFAULT_TIMEOUT = 10;
+    private static final int TIMEOUT_READ = 25;
 
     private ApiService apiService;
 
     private ApiManager() {
 
-        OkHttpClient client=new OkHttpClient();
-        client.setConnectTimeout(DEFAULT_TIMEOUT,TimeUnit.SECONDS);
+        SSLSocketFactory sslSocketFactory=SSLContextUtils.getSSLContext().getSocketFactory();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        Log.i(TAG,""+ACache.cacheDir);
+
+        //缓存目录
+        Cache cache = new Cache(new File(ACache.cacheDir), 10 * 1024 * 1024);
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                //必须是设置Cache目录
+                .cache(cache)
+                //失败重连
+                .retryOnConnectionFailure(true)
+                //time out
+                .readTimeout(TIMEOUT_READ, TimeUnit.SECONDS);
+        if(BuildConfig.DEBUG){
+            //stetho,可以在chrome中查看请求
+            builder.addNetworkInterceptor(new StethoInterceptor());
+        }
+
+        Retrofit.Builder retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        apiService=retrofit.create(ApiService.class);
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+
+        retrofit.client(builder.build());
+        apiService=retrofit.build().create(ApiService.class);
     }
 
-    private static class Create {
+    private static class Singleton {
         private static final ApiManager apiManager = new ApiManager();
     }
 
     public static ApiManager getInstance() {
-        return Create.apiManager;
+        return Singleton.apiManager;
     }
 
     @Override

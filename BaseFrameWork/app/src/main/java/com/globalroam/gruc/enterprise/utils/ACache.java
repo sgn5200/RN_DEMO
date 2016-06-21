@@ -59,7 +59,7 @@ public class ACache {
     private static final int MAX_COUNT = Integer.MAX_VALUE; // 不限制存放数据的数量
     private static Map<String, ACache> mInstanceMap = new HashMap<String, ACache>();
     private ACacheManager mCache;
-    private static String cacheDir="";
+    public static String cacheDir="";
 
     static {
         if (App.getInstance().getApplicationContext().getExternalCacheDir() != null && ExistSDCard()) {

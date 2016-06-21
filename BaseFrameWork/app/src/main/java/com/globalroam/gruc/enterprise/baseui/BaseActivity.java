@@ -4,7 +4,6 @@ package com.globalroam.gruc.enterprise.baseui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -13,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.globalroam.gruc.enterprise.R;
-import com.globalroam.gruc.enterprise.broadcast.netstatus.NetChangeCallBack;
-import com.globalroam.gruc.enterprise.broadcast.netstatus.NetStatusReceiver;
+import com.globalroam.gruc.enterprise.http.netstatus.NetChangeCallBack;
+import com.globalroam.gruc.enterprise.http.netstatus.NetStatusReceiver;
 import com.globalroam.gruc.enterprise.utils.Log;
 import com.globalroam.gruc.enterprise.utils.NetUtil;
 
@@ -28,8 +27,8 @@ public abstract class BaseActivity extends FragmentActivity implements IDelegate
     protected String TAG;
 
     private NetChangeCallBack netChangeCallBack;
-    protected SparseArray<View> mViews = new SparseArray<>();
-    protected View rootView = null;
+    private SparseArray<View> mViews = new SparseArray<>();
+    private View rootView = null;
 
     /**
      * @return root 设置root视图ID =xml layout id

@@ -61,16 +61,20 @@ public class SPUtil {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
 
-        if (defaultObject instanceof String) {
-            return sp.getString(key, (String) defaultObject);
-        } else if (defaultObject instanceof Integer) {
-            return sp.getInt(key, (Integer) defaultObject);
-        } else if (defaultObject instanceof Boolean) {
-            return sp.getBoolean(key, (Boolean) defaultObject);
-        } else if (defaultObject instanceof Float) {
-            return sp.getFloat(key, (Float) defaultObject);
-        } else if (defaultObject instanceof Long) {
-            return sp.getLong(key, (Long) defaultObject);
+        try {
+            if (defaultObject instanceof String) {
+                return sp.getString(key, String.valueOf(defaultObject));
+            } else if (defaultObject instanceof Integer) {
+                return sp.getInt(key, (Integer) defaultObject);
+            } else if (defaultObject instanceof Boolean) {
+                return sp.getBoolean(key, (Boolean) defaultObject);
+            } else if (defaultObject instanceof Float) {
+                return sp.getFloat(key, (Float) defaultObject);
+            } else if (defaultObject instanceof Long) {
+                return sp.getLong(key, (Long) defaultObject);
+            }
+        }catch (Exception e){
+            Log.e("SPUtil","object cast exception");
         }
 
         return null;
